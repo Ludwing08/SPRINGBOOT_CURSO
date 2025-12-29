@@ -1,0 +1,6 @@
+2025-12-24 08:04:01 [http-nio-8081-exec-9] ERROR c.e.p.controllers.TodoController - Consultando todos los productos desde el API
+2025-12-24 10:33:43 [http-nio-8081-exec-1] ERROR c.e.p.controllers.TodoController - Consultando todos los productos desde el API
+2025-12-24 10:33:45 [http-nio-8081-exec-3] ERROR c.e.p.controllers.TodoController - Consultando todos los productos desde el API
+2025-12-24 10:33:46 [http-nio-8081-exec-4] ERROR c.e.p.controllers.TodoController - Consultando todos los productos desde el API
+2025-12-24 17:02:53 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-24 17:02:53 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
