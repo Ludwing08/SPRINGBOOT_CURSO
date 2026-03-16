@@ -84,25 +84,31 @@ public class TodoController {
 
     @PutMapping("/item/Edit/{id}")
     public ResponseEntity<ApiResponse<TodoModel>> updateItem(@PathVariable Long id, @RequestBody TodoModel todoModel){
-        TodoModel existingTodo = todoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No se encontró el item con ID: " + id));
+        Optional<TodoModel> existingTodo = todoRepository.findById(id);
 
-        existingTodo.setDescripcion(todoModel.getDescripcion());
-        existingTodo.setEstado(todoModel.getEstado());
-        existingTodo.setPrioridad(todoModel.getPrioridad());
+        if (existingTodo.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.error("El item con ID " + id + " no existe", 404));
+        }
 
-        TodoModel updatedTodo = todoRepository.save(existingTodo);
+        existingTodo.get().setDescripcion(todoModel.getDescripcion());
+        existingTodo.get().setEstado(todoModel.getEstado());
+        existingTodo.get().setPrioridad(todoModel.getPrioridad());
+
+        TodoModel updatedTodo = todoRepository.save(existingTodo.get());
 
         return ResponseEntity.ok(ApiResponse.success(updatedTodo, "Item actualizado correctamente"));
     }
 
     @DeleteMapping("/item/{id}")
     public ResponseEntity<ApiResponse> deleteItem(){
-        return null;
+        return  null;
     }
 
     @PutMapping("/itemState/{id}")
     public ResponseEntity<ApiResponse> inactiveItem(){
         return null;
     }
+    
 }
